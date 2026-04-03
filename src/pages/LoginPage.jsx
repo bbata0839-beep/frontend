@@ -75,7 +75,7 @@ export default function LoginPage() {
   const [regPassword, setRegPassword] = useState("");
 
   function startGoogleLogin() {
-    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    const baseUrl = import.meta.env.VITE_API_URL || "https://backend-j3u1.onrender.com";
     window.location.href = `${baseUrl}/auth/google`;
   }
 

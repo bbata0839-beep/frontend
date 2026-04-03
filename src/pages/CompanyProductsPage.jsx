@@ -31,7 +31,7 @@ export default function CompanyProductsPage() {
           await api.delete(`/products/${id}`);
           message.success("Product deleted successfully");
           load();
-        } catch(e) {
+        } catch (e) {
           message.error("Failed to delete product");
         }
       }
@@ -134,32 +134,32 @@ export default function CompanyProductsPage() {
 
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
                   <Text type="secondary">Quantity:</Text>
-                  <Button 
-                    size="small" 
-                    icon={<MinusOutlined />} 
-                    disabled={p.quantity <= 0} 
-                    onClick={() => handleUpdateQuantity(p.id, p.quantity - 1)} 
+                  <Button
+                    size="small"
+                    icon={<MinusOutlined />}
+                    disabled={p.quantity <= 0}
+                    onClick={() => handleUpdateQuantity(p.id, p.quantity - 1)}
                   />
                   <Text strong>{p.quantity || 0}</Text>
-                  <Button 
-                    size="small" 
-                    icon={<PlusOutlined />} 
-                    onClick={() => handleUpdateQuantity(p.id, (p.quantity || 0) + 1)} 
+                  <Button
+                    size="small"
+                    icon={<PlusOutlined />}
+                    onClick={() => handleUpdateQuantity(p.id, (p.quantity || 0) + 1)}
                   />
                 </div>
 
                 <div style={{ marginTop: 12, display: "flex", gap: 8, justifyContent: "flex-end" }}>
-                  <Button 
-                    size="small" 
-                    icon={<EyeOutlined />} 
+                  <Button
+                    size="small"
+                    icon={<EyeOutlined />}
                     onClick={() => { setSelectedProduct(p); setDetailsOpen(true); }}
                   >
                     Details
                   </Button>
-                  <Button 
-                    size="small" 
-                    danger 
-                    icon={<DeleteOutlined />} 
+                  <Button
+                    size="small"
+                    danger
+                    icon={<DeleteOutlined />}
                     onClick={() => handleDelete(p.id)}
                   >
                     Delete
@@ -231,12 +231,12 @@ export default function CompanyProductsPage() {
             Upload a CSV file to bulk import products. The system uses stream processing, so you can upload massive lists (10,000+ rows) without crashing the server.
           </Text>
         </div>
-        
+
         <div style={{ marginBottom: 24 }}>
-          <Button 
-            type="link" 
+          <Button
+            type="link"
             onClick={() => {
-              window.open(`${import.meta.env.VITE_API_URL || "http://localhost:4000"}/products/template/csv`, "_blank");
+              window.open(`${import.meta.env.VITE_API_URL || "https://backend-j3u1.onrender.com"}/products/template/csv`, "_blank");
             }}
             style={{ padding: 0 }}
           >
@@ -248,7 +248,7 @@ export default function CompanyProductsPage() {
           name="file"
           accept=".csv"
           multiple={false}
-          action={`${import.meta.env.VITE_API_URL || "http://localhost:4000"}/products/import/csv`}
+          action={`${import.meta.env.VITE_API_URL || "https://backend-j3u1.onrender.com"}/products/import/csv`}
           headers={{
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }}
@@ -296,15 +296,15 @@ export default function CompanyProductsPage() {
               ${parseFloat(selectedProduct.price).toFixed(2)}
             </Text>
             {selectedProduct.category && <Tag color="blue" style={{ marginBottom: 16 }}>{selectedProduct.category}</Tag>}
-            
+
             {selectedProduct.imageUrl && (
               <div style={{ marginBottom: 16 }}>
                 <img src={selectedProduct.imageUrl} alt={selectedProduct.name} style={{ maxWidth: '100%', borderRadius: 8 }} />
               </div>
             )}
-            
+
             <Paragraph>{selectedProduct.description}</Paragraph>
-            
+
             <div style={{ marginTop: 16 }}>
               <Text type="secondary">Status: </Text>
               {selectedProduct.inStock ? <Text type="success" strong>In Stock</Text> : <Text type="danger" strong>Out of Stock</Text>}
